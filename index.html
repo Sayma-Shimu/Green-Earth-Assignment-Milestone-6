@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Green Earth</title>
     <!-- daisy-----tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -23,41 +23,56 @@
 </head>
 
 <body>
-    <header class="bg-[#15803D]">
-        <div class="w-10/12 mx-auto navbar  ">
-            
-            <div class="navbar-start w-">
-                <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h8m-8 6h16" />
-                        </svg>
+
+    <header >
+        <section class="bg-[#15803D]">
+            <div class="w-10/12 mx-auto navbar  ">
+
+                <div class="navbar-start w-">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li><a>About</a></li>
+                            <li><a>Gallery</a></li>
+                            <li><a>Plant a Tree</a></li>
+                        </ul>
                     </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>About</a></li>
-                        <li><a>Gallery</a></li>
-                        <li><a>Plant a Tree</a></li>
+                    <a class="text-white font-semibold text-base md:text-xl">Green Earth</a>
+                </div>
+
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1">
+                        <li class="text-white font-medium text-base"><a>About</a></li>
+                        <li class="text-white font-medium text-base"><a>Gallery</a></li>
+                        <li class="text-white font-medium text-base"><a>Plant a Tree</a></li>
                     </ul>
                 </div>
-                <a class="text-white font-semibold text-xl">Green Earth</a>
-            </div>
 
-            <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal px-1">
-                    <li class="text-white font-medium text-base"><a>About</a></li>
-                    <li class="text-white font-medium text-base"><a>Gallery</a></li> 
-                    <li class="text-white font-medium text-base"><a>Plant a Tree</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <a class="bg-[#FACC15] text-[#15803D] rounded-2xl text-base font-medium py-2 px-3">Plant a Tree</a>
+                </div>
             </div>
+        </section>
 
-            <div class="navbar-end">
-                <a class="bg-[#FACC15] text-[#15803D] rounded-2xl text-base font-medium py-2 px-3">Plant a Tree</a>
+        <!-- banner------------ -->
+        <section class="banner bg-[#cff0dc] flex justify-between items-center">
+            <div><img src="./assets/hero-leaf1.png" alt=""></div>
+            <div class="space-y-3 text-center">
+                <h2 class="font-bold text-xl md:text-4xl">Plant a Tree, Grow a Future</h2>
+                <p class=" md:text-base font-normal">Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+                <button class="bg-[#FACC15] text-[#15803D] rounded-2xl text-base font-medium py-2 px-5">Get Involved</button>
             </div>
-            </div>
-        
+            <div><img src="./assets/hero-leaf2.png" alt=""></div>
+
+        </section>
+
     </header>
 
 
