@@ -77,29 +77,36 @@
         </section>
 
     </header>
-
+   
     <main class="bg-[#f0fdf4] ">
 
         <section class="flex justify-center items-center ">
-            <div class="w-10/12 mt-14">
+
+            <div class="w-10/12 mt-14 ">
                 <h1 class="text-xl md:text-2xl font-semibold text-center ">Choose Your Trees</h1>
 
-            <!-- card container---------------- -->
-             <div class="mt-8">
-                <h3 class="font-semibold text-xl">Categories</h3>
-        <!--category container-------------- -->
-                <ul id="categoryContainer" class="mt-3 space-y-2">
-                    <li class="hover:bg-[#15803D] hover:text-white text-black">All Trees</li>
-                    
-                </ul>
-               
+                <!-- card container---------------- -->
+                <div class="mt-8 flex flex-col md:flex-row justify-between items-start gap-5">
+                    <!-- 1------------------ -->
+                    <div class=" md:w-2/12 p-1 shadow-lg">
+                        <h3 class="font-semibold text-xl">Categories</h3>
+                        <!--category container-------------- -->
+                        <ul id="categoryContainer" class="mt-3 space-y-2">
+                            <li class="hover:bg-[#15803D] hover:text-white text-black">All Trees</li>
 
-       <!-- ----------image shoho tree details card------------ -->
-                <div></div>
+                        </ul>
+                    </div>
 
-      <!-- ---------total price show cart---------- -->
-                <div></div>
-             </div>
+                    <!-- 2------------------ -->
+                    <!-- ----------image shoho tree details card------------ -->
+                    <div id="treesContainer" class=" md:w-8/12 grid grid-cols-1 md:grid-cols-3 gap-5 shadow-lg">
+
+                    </div>
+
+                    <!-- 3------------------ -->
+                    <!-- ---------total price show cart---------- -->
+                    <div class="bg-red-600 md:w-2/12 "><h1>hello</h1></div>
+                </div>
 
             </div>
         </section>
@@ -168,18 +175,19 @@
             <!-- input------------ -->
             <div
                 class="bg-[#15803d] w-1/2 md:w-[400px] md:h-[250px] flex flex-col justify-center items-center rounded-xl gap-2 p-3 md:px-11 mt-8">
-                <input class="bg-white text-xs md:text-base font-normal rounded-md border-none w-full p-2" type="text" name="" id=""
-                    placeholder="Your Name">
-                <input class="bg-white text-xs md:text-base font-normal rounded-md border-none w-full p-2" type="email" name="" id=""
-                    placeholder="Your Email Address">
-               <select class="w-full bg-white rounded-md border-none p-2" name="" id="">
-                <option value="">Number of Trees</option>
-                <option value="">1 Tree - $5</option>
-                <option value="">5 Tree - $25</option>
-                <option value="">10 Tree - $50</option>
-               </select>
+                <input class="bg-white text-xs md:text-base font-normal rounded-md border-none w-full p-2" type="text"
+                    name="" id="" placeholder="Your Name">
+                <input class="bg-white text-xs md:text-base font-normal rounded-md border-none w-full p-2" type="email"
+                    name="" id="" placeholder="Your Email Address">
+                <select class="w-full bg-white rounded-md border-none p-2" name="" id="">
+                    <option value="">Number of Trees</option>
+                    <option value="">1 Tree - $5</option>
+                    <option value="">5 Tree - $25</option>
+                    <option value="">10 Tree - $50</option>
+                </select>
 
-                <button class="w-full bg-[#FACC15] text-[#15803D] rounded-2xl text-xs md:text-base font-medium py-2 md:px-5">Donate
+                <button
+                    class="w-full bg-[#FACC15] text-[#15803D] rounded-2xl text-xs md:text-base font-medium py-2 md:px-5">Donate
                     Now</button>
 
             </div>
@@ -194,7 +202,7 @@
 
 
 
-   
+
 
     <script src="./index.js"></script>
 </body>
