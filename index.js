@@ -39,6 +39,7 @@ const displayCategory = (categories) => {
 
         if (e.target.localName === 'li') {
             // console.log(e.target.id);
+            showLoading();
 
             e.target.classList.add('bg-[#15803D]')
             e.target.classList.add('text-white')
@@ -210,3 +211,9 @@ const removeFromCart = (index)=>{
     displayCart()
 }
 
+// show loading-------------
+const showLoading = ()=>{
+    treesContainer.innerHTML = `
+    <div class="bg-red-500 p-2">Loading.....</div>
+    `
+}
