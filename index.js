@@ -214,6 +214,6 @@ const removeFromCart = (index)=>{
 // show loading-------------
 const showLoading = ()=>{
     treesContainer.innerHTML = `
-    <div class="bg-red-500 p-2">Loading.....</div>
+    <div > <span class="loading loading-bars loading-xl"> </span></div>
     `
 }
