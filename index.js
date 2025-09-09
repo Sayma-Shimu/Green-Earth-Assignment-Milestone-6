@@ -1,5 +1,8 @@
 const categoryContainer = document.getElementById('categoryContainer');
 const treesContainer = document.getElementById('treesContainer');
+const totalPriceShowCart = document.getElementById('totalPriceShowCart');
+
+let cart = []
 
 // tree category name--------------
 const loadCategories = () => {
@@ -14,6 +17,11 @@ const loadCategories = () => {
 };
 
 const displayCategory = (categories) => {
+
+    categoryContainer.innerHTML = `
+        <li id="all-trees" class="bg-[#15803D] text-white">All Trees</li>
+    `
+
     categories.forEach(cat => {
         categoryContainer.innerHTML += `
             <li id = "${cat.id}" class="hover:bg-[#15803D] hover:text-white text-black">${cat.category_name}</li>
@@ -35,7 +43,13 @@ const displayCategory = (categories) => {
             e.target.classList.add('bg-[#15803D]')
             e.target.classList.add('text-white')
 
-            loadTreesByCategory(e.target.id)
+            if (e.target.id === "all-trees") {
+                loadAllTrees()
+            } else {
+                loadTreesByCategory(e.target.id)
+            }
+
+
         }
 
     })
@@ -43,43 +57,50 @@ const displayCategory = (categories) => {
 }
 
 
-// plants detail------------------
-const loadPlantsDetail = async (id)=>{
+// plants detail modal------------------
+const loadPlantsDetail = async (id) => {
 
     const url = `https://openapi.programming-hero.com/api/plant/${id}`;
     const response = await fetch(url);
     const details = await response.json();
-    displayPlantsDetails(details.plants);    
+    displayPlantsDetails(details.plants);
 
-}
+};
 
-const displayPlantsDetails = (plantsDetails)=>{
-console.log(plantsDetails);
-const detailsContainer = document.getElementById('detailsContainer');
-detailsContainer.innerHTML = `
+const displayPlantsDetails = (plantsDetails) => {
+    console.log(plantsDetails);
+    const detailsContainer = document.getElementById('detailsContainer');
+    detailsContainer.innerHTML = `
+
  <div id="detailsContainer" class="" >
                         <div class =" bg-white p-2 rounded-lg space-y-4">
                             <h2 class = "font-bold text-lg">${plantsDetails.name}</h2>
                             <div> <img class= "h-[200px] w-full object-cover rounded-lg" src="${plantsDetails.image}" alt=""> </div>
                             <h3 > <span class = "font-bold">Category</span>: ${plantsDetails.category}</h3>
                             <h3 > <span class = "font-bold">Price</span>: ${plantsDetails.price} tk</h3>
-                            <h3 > <span class = "font-bold">Description</span>: ${plantsDetails.description }</h3>
+                            <h3 > <span class = "font-bold">Description</span>: ${plantsDetails.description}</h3>
                         </div>
 
                     </div>
-`
-document.getElementById('plantModal').showModal();
+`;
+
+    document.getElementById('plantModal').showModal();
 
 }
 
 
 // tree card --------------
 const loadTreesByCategory = (categoryId) => {
+
+
     // fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
-        fetch(`https://openapi.programming-hero.com/api/plants`)
+    fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
         .then(res => res.json())
         .then(data => {
+            treesContainer.innerHTML = ""
             displayTreesByCategory(data.plants);
+            // console.log(data);
+
 
         })
         .catch(err => err)
@@ -104,10 +125,10 @@ const displayTreesByCategory = (plants) => {
 
     <div class = "flex justify-between">
         <h4 class="text-xs px-2 rounded-2xl p-1 bg-emerald-200 text-[#15803d]">${plant.category}</h4>
-        <h4 class = "font-semibold text-sm"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${plant.price}</h4>
+        <h4 class = "font-semibold text-sm"><span><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>${plant.price}</h4>
     </div>
 
-     <button class="w-full bg-[#166534] text-white rounded-2xl text-base font-medium py-2">Add to Cart</button>
+     <button onclick="addToCart('${plant.name}', ${plant.price})" class="w-full bg-[#166534] text-white rounded-2xl text-base font-medium py-2">Add to Cart</button>
 
      </div>
         
@@ -118,5 +139,74 @@ const displayTreesByCategory = (plants) => {
 
 }
 
+
+
 loadTreesByCategory('plant.id')
 loadCategories()
+
+// function for load all trees---------------------
+
+const loadAllTrees = () => {
+    const url = 'https://openapi.programming-hero.com/api/plants'
+    fetch(url)
+        .then((res) => (res.json()))
+        .then(data => {
+            treesContainer.innerHTML = ""
+            displayTreesByCategory(data.plants);
+        })
+
+        .catch(err => err)
+}
+
+loadAllTrees()
+
+
+// add to cart function-----------------
+
+const addToCart = (name, price) => {
+    const cartItem = {
+        name: name,
+        price: price
+    }
+    cart.push(cartItem)
+
+    displayCart()
+}
+
+// function for UI update----------------- 
+
+const displayCart = () => {
+    totalPriceShowCart.innerHTML = ""
+
+    let totalPrice = 0;
+
+
+    cart.forEach((item, index) => {
+        totalPrice = totalPrice + item.price
+
+        totalPriceShowCart.innerHTML+= `
+            <div class="flex justify-between p-2">
+                <div class="flex flex-col">
+                <p>${item.name}</p>
+                <p>${item.price} tk</p>
+                </div>
+                <button onclick="removeFromCart(${index})" class="text-red-500 font-bold"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        `
+    })
+
+    totalPriceShowCart.innerHTML+=`
+        <div>
+            <hr/>
+            <p class="p-2">Total:- ${totalPrice} TK</p>
+        </div>
+    `
+}
+
+// function for reducing total price---------------
+
+const removeFromCart = (index)=>{
+    cart.splice(index, 1)
+    displayCart()
+}
+
