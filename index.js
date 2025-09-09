@@ -43,6 +43,36 @@ const displayCategory = (categories) => {
 }
 
 
+// plants detail------------------
+const loadPlantsDetail = async (id)=>{
+
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    const response = await fetch(url);
+    const details = await response.json();
+    displayPlantsDetails(details.plants);    
+
+}
+
+const displayPlantsDetails = (plantsDetails)=>{
+console.log(plantsDetails);
+const detailsContainer = document.getElementById('detailsContainer');
+detailsContainer.innerHTML = `
+ <div id="detailsContainer" class="" >
+                        <div class =" bg-white p-2 rounded-lg space-y-4">
+                            <h2 class = "font-bold text-lg">${plantsDetails.name}</h2>
+                            <div> <img class= "h-[200px] w-full object-cover rounded-lg" src="${plantsDetails.image}" alt=""> </div>
+                            <h3 > <span class = "font-bold">Category</span>: ${plantsDetails.category}</h3>
+                            <h3 > <span class = "font-bold">Price</span>: ${plantsDetails.price} tk</h3>
+                            <h3 > <span class = "font-bold">Description</span>: ${plantsDetails.description }</h3>
+                        </div>
+
+                    </div>
+`
+document.getElementById('plantModal').showModal();
+
+}
+
+
 // tree card --------------
 const loadTreesByCategory = (categoryId) => {
     // fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
@@ -63,18 +93,18 @@ const displayTreesByCategory = (plants) => {
         // console.log(plant);
 
         treesContainer.innerHTML += `
-     <div class =" bg-white p-3 rounded-lg space-y-2">
+     <div class =" bg-white p-2 rounded-lg space-y-4">
 
         <div>
             <img  class= "h-[186px] w-full object-cover rounded-lg" src="${plant.image}" alt="">
         </div>
 
-        <h3 class = "font-semibold text-sm">${plant.name}</h3>
+        <h3 id = "viewDetails" onclick="loadPlantsDetail(${plant.id})" class = "font-semibold text-sm">${plant.name}</h3>
         <p class= "text-xs font-normal">${plant.description}</p>
 
     <div class = "flex justify-between">
         <h4 class="text-xs px-2 rounded-2xl p-1 bg-emerald-200 text-[#15803d]">${plant.category}</h4>
-        <h4 class = "font-semibold text-sm">${plant.price}</h4>
+        <h4 class = "font-semibold text-sm"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${plant.price}</h4>
     </div>
 
      <button class="w-full bg-[#166534] text-white rounded-2xl text-base font-medium py-2">Add to Cart</button>
